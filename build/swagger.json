@@ -7,6 +7,55 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"ISetDeviceInfoResponse": {
+				"type": "boolean"
+			},
+			"Error": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"stack": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ISetDeviceInfoBody": {
+				"properties": {
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"version": {
+						"type": "string"
+					},
+					"baseOS": {
+						"type": "string",
+						"enum": [
+							"ios",
+							"android",
+							"windows",
+							"web"
+						]
+					}
+				},
+				"required": [
+					"userId",
+					"version",
+					"baseOS"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Pick_DeviceInfoAttributes.userId-or-baseOS-or-version_": {
 				"properties": {
 					"userId": {
@@ -43,6 +92,45 @@
 		"contact": {}
 	},
 	"paths": {
+		"/v1/stats/deviceinfo": {
+			"post": {
+				"operationId": "SetDeviceInfo",
+				"responses": {
+					"409": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/ISetDeviceInfoResponse"
+										},
+										{
+											"$ref": "#/components/schemas/Error"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Statistics"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ISetDeviceInfoBody"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/adddeviceinfo": {
 			"post": {
 				"operationId": "CreateDevice",

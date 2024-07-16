@@ -1,0 +1,74 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Pick_DeviceInfoAttributes.userId-or-baseOS-or-version_": {
+				"properties": {
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"baseOS": {
+						"type": "string"
+					},
+					"version": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"userId",
+					"baseOS",
+					"version"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"DeviceCreationParams": {
+				"$ref": "#/components/schemas/Pick_DeviceInfoAttributes.userId-or-baseOS-or-version_"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "typescript-api",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/adddeviceinfo": {
+			"post": {
+				"operationId": "CreateDevice",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeviceCreationParams"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

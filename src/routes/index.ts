@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import TodosRouter from './todos';
-import UserRouter from './users';
+import UserRouter from './users/UsersRouter';
 import DeviceInfoRouter from './deviceinfo';
 
 const AppRouter = Router();

@@ -19,7 +19,7 @@ class UsersController extends Controller {
   public async getUserById(
     @Query() id: number,
   ): Promise<UserAttributes | Error | null> {
-    // UserAttributes für UserModel möglich durch implements in UserModel.ts
+    // UserModel für UserAttributes möglich durch implements in UserModel.ts wenn nicht swagger Dokumentation
     if (id) {
       const user = await UserModel.findOne({
         where: { id },

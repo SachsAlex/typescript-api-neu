@@ -12,6 +12,7 @@ UsersRouter.get('/user/byId', async (req, res) => {
   const controller = new UsersController();
   const userId = parseInt(req.query.id as string);
   const result = await controller.getUserById(userId);
+  // const result = await controller.getUserById(req.query.id as string);
   res.status(StatusCodes.OK).json(result);
 });
 
